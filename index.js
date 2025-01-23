@@ -1,0 +1,12 @@
+const app=require("./src/app");
+const doteEnv=require("dotenv");
+doteEnv.config();
+
+require("./dbconnection/index")
+
+const PORT=process.env.PORT;
+
+app.listen(PORT,()=>{
+    console.log("server start on port http://localhost:" + PORT);
+})
+
