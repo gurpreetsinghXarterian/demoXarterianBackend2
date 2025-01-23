@@ -53,7 +53,6 @@ const signupUser = async (req, res) => {
 const loginuser = async (req, res) => {
     const { email, password } = req.body
     try {
-<<<<<<< HEAD
         const userValid = await userModal.findOne({ email })
             .populate('userDetailsId')
             .populate({
@@ -74,9 +73,6 @@ const loginuser = async (req, res) => {
               })
             .lean()
 
-=======
-        const userValid = await userModal.findOne({ email }).lean()
->>>>>>> ca8473b (authdone)
         if (userValid) {
             
             const isValidPassword = bcrypt.compareSync(password, userValid.password);
@@ -94,11 +90,7 @@ const loginuser = async (req, res) => {
                 }, process.env.SECRET_KEY, {
                     expiresIn: 60 * 60 * 24 // expires in 24 hours
                 });
-<<<<<<< HEAD
                 // console.log("token",token);
-=======
-
->>>>>>> ca8473b (authdone)
                 const { password, ...other } = userValid;
 
                 res.status(200).send({ status: "success", message: "Logged in successfully", token: token, data: { ...other } });

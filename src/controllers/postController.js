@@ -6,7 +6,6 @@ const PostsSchema = require("../models/postsSchema");
 const s3Service = require("../services/s3Services");
 const multer = require('multer');
 
-<<<<<<< HEAD
 const storage = multer.memoryStorage();
 const upload = multer({ storage }).single('file');
 
@@ -62,32 +61,6 @@ const createPost = (req, res) => {
             console.log("errorUploading",err)
         }
     });
-=======
-// Create a new post
-const createPost = async (req, res) => {
-    // const { userId } = req.user;
-    // const { caption, imageUrl } = req.query;
-
-    const result = await s3Service.uploadFileToS3(req.file);
-
-    // const fileUrl = `https://demo-bucket-foyr.s3.us-west-1.amazonaws.com/${req.file.originalname}`;
-    
-    // const file = await File.create({
-    //     name: req.file.originalname,
-    //     url: fileUrl,
-    //     size: req.file.size,
-    //     mail: mail,
-    //     pathref: "file",
-    // });
-
-    // const post = new postsSchema({
-    //     user: userId,
-    //     caption: caption,
-    //     imageUrl: imageUrl,
-    // });
-    // await post.save();
-    res.status(200).send({ status: "success", message: "Post Created Successfully" });
->>>>>>> ca8473b (authdone)
 };
 
 // Like a post
@@ -118,11 +91,7 @@ const commentOnPost = async (req, res) => {
 // Get all posts of the authenticated user
 const getAllPosts = async (req, res) => {
     try {
-<<<<<<< HEAD
         const posts = await PostsSchema.find().populate({ path: 'user', select: 'email _id userDetailsId', populate: {path: 'userDetailsId', select: 'profilePicture fullName'}});
-=======
-        const posts = await postsSchema.find();
->>>>>>> ca8473b (authdone)
         res.status(200).send({ status: "success", posts });
     } catch (error) {
         res.status(500).send({ status: "error", message: error.message });
